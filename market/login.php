@@ -91,7 +91,7 @@
                              if(response.Regid==0){  
                                  window.location="./pumpprice.php";
                              }else if(response.Regid>0){
-                                 window.location="./dashboard.php"; 
+                                 window.location="./admin_dashboard.php"; 
                              }else{
                                 $("#login-error").html(response.Error); 
                              }  

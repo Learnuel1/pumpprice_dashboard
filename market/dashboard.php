@@ -25,10 +25,10 @@ if(!isset($_SESSION["LoggedIn"])){
         <?php include("./header.php")?>  
            <div class="content-infor">
                 <div class="left">
-                    <div class="card table-infor">
+                    <!-- <div class="card table-infor">
                         <div class="card-body">
                         <p class="heading-text">
-                            Current price of products  
+                            Current price 
                         </p>  
             					<table class="table products table-hover">
       							<thead class="table-dark">
@@ -44,13 +44,13 @@ if(!isset($_SESSION["LoggedIn"])){
             					    	<tbody id="all-product"> 
                            
             						    </tbody>
-      						</table>
+      						</table> -->
                 </div>
             </div>
                 </div>
                 
                 <div class="right">
-                <div class="card table-infor">
+                <!-- <div class="card table-infor">
                         <div class="card-body">
                         <p class="heading-text">
                               Price history  
@@ -71,6 +71,7 @@ if(!isset($_SESSION["LoggedIn"])){
                                 $q1="SELECT * FROM view_product_price WHERE Regid=$userid " ;
                                 $q1 = $conn->query($q1);
                                 while($row = mysqli_fetch_assoc($q1)){
+                                  echo $row;
                                   extract($row); 
                                  ?> 
                                  <tr> 
@@ -86,15 +87,14 @@ if(!isset($_SESSION["LoggedIn"])){
                           
                            </tbody>
                       </table>
-                </div>
+                </div> -->
               </div>  
                
                 </div>
            </div>
         </div>
   
-    </div>
-    <?php include("./footer.php")?> 
+    </div> 
     
 
 <!--NOTIFICATION MODAL-->  
@@ -120,59 +120,11 @@ if(!isset($_SESSION["LoggedIn"])){
 </div>
 
 
-<!--ADD NEW PRODUCT MODAL -->
-  <!-- Button trigger modal -->
-  <button type="button" id="btn_addProduct_modal" data-bs-toggle="modal" data-bs-target="#addProduct_modal"> 
-  </button>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="addProduct_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="staticBackdropLabel">Add Product</h4> 
-          <button type="button" id="btn-close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-        <div class="form-group1"> 
-        <h5 class="mb-2 text-muted">Create new product details</h5>
-                         <label for="InputEmail">Product name</label>
-                         <input type="text"class="form-control" id="ProductName" aria-describedby="ProductName" placeholder="Enter product name" name="product"> 
-        </div>
-        <div class="form-group1"> 
-              <label for="Symbols">Select symbol</label>
-              <select id="pro_symbols" class="form-control">
-                
-                  <?php include("./symbols.php")  ?>
-                  
-              </select> 
-            </div>
-            <div class="form-group1"> 
-            <label for="checkbox">Status </label>
-          <input class="form-check-input" type="checkbox"  id="status" value="Available" checked> 
-          <label class="form-check-label" for="flexSwitchCheckDefault">Available</label>
-            </div>
-            <div class="form-group1"> 
-                  <label for="InputPrice">Price</label>
-                    <input type="number" class="form-control" id="Price" aria-describedby="price" placeholder="Enter product price" name="price">   
-            </div> 
-            <div class="form-group1">
-               <h6 class="form-group1 error" id="error"><small></small></h6> 
-              </div>
-              <div class="form-group1">
-              <button type="button" id="btn-save-product" class="btn btn-primary btn-block" name="save">Save</button>   
-              </div> 
-        </div>
-        
-      </div>
-      </div>
-    </div>
-  </div> 
-  
+   <?php include("./addproduct.php") ?>
 <!-- UPDATE PRODUCT PRICE MODAL--> 
   <!-- Button trigger modal -->
-  <button type="button" id="btn_updateprice_model" data-bs-toggle="modal" data-bs-target="#UpdatePrice_modal"> 
-  </button>
+  <!-- <button type="button" id="btn_updateprice_model" data-bs-toggle="modal" data-bs-target="#UpdatePrice_modal"> 
+  </button> -->
   
   <!-- Modal -->
   <div class="modal fade" id="UpdatePrice_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -218,18 +170,22 @@ if(!isset($_SESSION["LoggedIn"])){
 <script>
  
  $(document).ready(function(){
-   var addProduct_model= document.querySelector("#btn_addProduct_modal");
-   var notification= document.querySelector("#notification_model");
-   var headContainer= document.querySelector("#header"); 
-    ("#notification_model");
-   var btn_updateprice_model= document.querySelector("#btn_updateprice_model"); 
+   let addProduct_model= document.querySelector("#btn_addProduct_modal");
+   let notification= document.querySelector("#notification_model");
+   let headContainer= document.querySelector("#header"); 
+    // ("#notification_model");
+   let btn_updateprice_model= document.querySelector("#btn_updateprice_model"); 
    addProduct_model.style.display='none';
    notification.style.display='none';   
    btn_updateprice_model.style.display='none'; 
-   var error=""; 
-    
+   let error=""; 
+   $("#dashboard").removeClass('active-btn');
+   $("#dashboard_links").removeClass('active-list');
+   
+   $("#updateprice_links").addClass('active-btn');
+   $("#updateProduct").addClass('active-list');
    loadproduct();
-  var status=$("#status").val(); 
+  let status=$("#status").val(); 
   
   $("#status").on('change',function(){ 
      if($(this).prop('checked')){
@@ -238,7 +194,7 @@ if(!isset($_SESSION["LoggedIn"])){
        status="Not";
      } 
   });
-  var updatestatus=$("#update_status").val(); 
+  let updatestatus=$("#update_status").val(); 
   $("#update_status").on('change',function(){ 
      if($(this).prop('checked')){
        updatestatus=$("#update_status").val(); 
@@ -248,16 +204,16 @@ if(!isset($_SESSION["LoggedIn"])){
   });
   
    $("#addProduct").on('click',function(){ 
-     
+     console.log("cliked");
      $("#btn_addProduct_modal").trigger('click');
    });
 
 
    $("#btn-save-product").on('click',function(){ 
-     var product=$("#ProductName").val(); 
-     var symbol=$("#pro_symbols").val(); 
-     var price=$("#Price").val(); 
-     var usertype ="<?php echo $_SESSION["UserType"]; ?>";
+     let product=$("#ProductName").val(); 
+     let symbol=$("#pro_symbols").val(); 
+     let price=$("#Price").val(); 
+     let usertype ="<?php echo $_SESSION["UserType"]; ?>";
     
       if(product =="" || product==null){
         error="Provide product name";
@@ -271,21 +227,21 @@ if(!isset($_SESSION["LoggedIn"])){
          error="Invalid character";
       } else{
        const input = $('#Price')[0]
-           var dotPos = null;
+           let dotPos = null;
            input.oninput = function(e) {
            if (e.data === '.') {
              dotPos = input.value.length
            }
            }
            
-           var value = input.value
+           let value = input.value
            if (value.includes('.')) {
              dotPos = value.indexOf('.')
            } else if (!value.includes('.') && dotPos === null) {
              input.value += '.00'
            }
            if (dotPos !== null) {
-             var sliced = value.slice(dotPos + 1)
+             let sliced = value.slice(dotPos + 1)
              if (sliced.length > 2) {//round up to 2dp
              input.value = Number(value).toFixed(2)
              } else if (sliced.length === 1) {
@@ -296,7 +252,7 @@ if(!isset($_SESSION["LoggedIn"])){
            }
          
       }
-      var price=$("#Price").val(); 
+      let price=$("#Price").val(); 
      if(error!=""){
        $("#error").html(error);
        error="";
@@ -355,10 +311,10 @@ if(!isset($_SESSION["LoggedIn"])){
     
    //UPDATE PRODUCT DETAILS
    $("#btn_update_product").on('click',function(){
-    var oldProduct=$("#productName").val(); 
+    let oldProduct=$("#productName").val(); 
      
-     var newProduct=$("#ProductNewName").val(); 
-     var symbol =$("#symbols").val();
+     let newProduct=$("#ProductNewName").val(); 
+     let symbol =$("#symbols").val();
       
      if(oldProduct =="" || oldProduct==null || oldProduct.toLowerCase()==="select" ){
         error="Select product name";
@@ -401,8 +357,8 @@ if(!isset($_SESSION["LoggedIn"])){
    
    //update product status
    $("#btn_update_status").click(function () { 
-    var product=$("#updateProStatus").val(); 
-     var error="";
+    let product=$("#updateProStatus").val(); 
+     let error="";
      
      if(product==="" || product===null || product.toLowerCase()==="select"){
      error="Select a product";
@@ -437,7 +393,7 @@ if(!isset($_SESSION["LoggedIn"])){
    
    //load products
    function loadproduct() {
-    var userid="<?php echo $_SESSION["UserType"];  ?>";
+    let userid="<?php echo $_SESSION["UserType"];  ?>";
      
      $.ajax({ 
        url:'../functions/Helper.php',
@@ -449,15 +405,15 @@ if(!isset($_SESSION["LoggedIn"])){
        success:function(response){ 
           
          if(response.Error){
-          
+          console.log(response.Error)
          }else{  
-          var availCount=0;  
+          let availCount=0;  
            $("#pro-count").text(response.length);
           $("#all-product").addClass("#all-product");
            $(response).each(function(){
-             var datarow="<tr><td>"+this.Name +"</td><td>"+this.Symbol+"</td><td>" +this.Price + "</td><td>" +this.Status+   "</td><td>" +this.Date+  "</td><td>" +this.Time+  "</td></tr>";
+             let datarow="<tr><td>"+this.Name +"</td><td>"+this.Symbol+"</td><td>" +this.Price + "</td><td>" +this.Status+   "</td><td>" +this.Date+  "</td><td>" +this.Time+  "</td></tr>";
              $("#all-product").append(datarow);
-               var data={"Name":this.Name,"Symbol":this.Symbol,"Price":this.Price,"Status":this.Status}; 
+               let data={"Name":this.Name,"Symbol":this.Symbol,"Price":this.Price,"Status":this.Status}; 
                 
                if(this.Status=="Available"){
                    availCount +=1;
@@ -473,7 +429,7 @@ if(!isset($_SESSION["LoggedIn"])){
    
    //delete product
    $("#btn_delete").click(function(){  
-    var product=$("#deleteProduct").val();   
+    let product=$("#deleteProduct").val();   
      if(product ==="" ||product==null ||product.toLowerCase()==="select"   ){
         error="Select a product";
       }  
@@ -510,7 +466,7 @@ if(!isset($_SESSION["LoggedIn"])){
    });
    
    function loadData(){
-    var datarow="<option value=Select>Select</option>" ;
+    let datarow="<option value=Select>Select</option>" ;
              $("#select_product").append(datarow);
              $.ajax({ 
        url:'../functions/Helper.php',
@@ -521,9 +477,10 @@ if(!isset($_SESSION["LoggedIn"])){
        success:function(response){ 
         
          if(response.Error){ 
+          console.log(response)
          }else{   
            $(response).each(function(){
-             var datarow="<option value='"+this.Proid +"'>"+this.Name+"</option>" ;
+             let datarow="<option value='"+this.Proid +"'>"+this.Name+"</option>" ;
              $("#select_product").append(datarow); 
                  
            }  ); 
@@ -535,8 +492,8 @@ if(!isset($_SESSION["LoggedIn"])){
    
    } 
    $("#btn_update_price").click(function(){ 
-    var p_product=$("#select_product").val();  
-     var price=$("#new_Price").val(); 
+    let p_product=$("#select_product").val();  
+     let price=$("#new_Price").val(); 
       
      if(p_product =="" || p_product==null || p_product.toLowerCase()==="select"){
         error="Select product";
@@ -548,21 +505,21 @@ if(!isset($_SESSION["LoggedIn"])){
          error="Invalid character";
       } else{
        const input = $('#new_Price')[0]
-           var dotPos = null;
+           let dotPos = null;
            input.oninput = function(e) {
            if (e.data === '.') {
              dotPos = input.value.length
            }
            }
            
-           var value = input.value
+           let value = input.value
            if (value.includes('.')) {
              dotPos = value.indexOf('.')
            } else if (!value.includes('.') && dotPos === null) {
              input.value += '.00'
            }
            if (dotPos !== null) {
-             var sliced = value.slice(dotPos + 1)
+             let sliced = value.slice(dotPos + 1)
              if (sliced.length > 2) {//round up to 2dp
              input.value = Number(value).toFixed(2)
              } else if (sliced.length === 1) {
@@ -573,7 +530,7 @@ if(!isset($_SESSION["LoggedIn"])){
            }
          
       }
-      var price=$("#new_Price").val(); 
+      let price=$("#new_Price").val(); 
      if(error!=""){
        $("#price_error").html(error);
        error="";
@@ -601,7 +558,7 @@ if(!isset($_SESSION["LoggedIn"])){
      }
    });
    //update product price status
-   var updated_status=$("#updated_status").val(); 
+   let updated_status=$("#updated_status").val(); 
   $("#updated_status").on('change',function(){ 
      if($(this).prop('checked')){
        updated_status=$("#status").val(); 

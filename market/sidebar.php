@@ -14,7 +14,7 @@
                 <div class="items">
                      <ul class="btn">
                           <li class="btn-list active-btn" id="dashboard">
-                              <a class="btn-list-item active-list" id="dashboard_links" href="./dashboard.php" >Dashboard</a>
+                              <a class="btn-list-item active-list" id="dashboard_links" href="./admin_dashboard.php" >Dashboard</a>
                           </li> 
                           <li class="btn-list"  >
                               <a class="btn-list-item" id="addProduct">  New product</a>

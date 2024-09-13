@@ -11,13 +11,11 @@ BEGIN
 END //
 DELIMITER ;
 
-
-
-CREATE VIEW view_product_price
-AS
-SELECT p.Regid,Priceid, P.Proid,Name,Symbol,Cost,Status,CONVERT(P.DateAdded,Date)AS Created ,CONVERT(price.Date,Date)AS Date,CONVERT(price.Date,Time)AS Time
-FROM products P
-INNER JOIN price ON P.Proid=price.Proid
+-- CREATE VIEW view_product_price
+-- AS
+-- SELECT p.Regid,Priceid, P.Proid,Name,Symbol,Cost,Status,CONVERT(P.DateAdded,Date)AS Created ,CONVERT(price.Date,Date)AS Date,CONVERT(price.Date,Time)AS Time
+-- FROM products P
+-- INNER JOIN price ON P.Proid=price.Proid
 
 DELIMITER //
 CREATE PROCEDURE sp_get_user_products(IN userid int(11))

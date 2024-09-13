@@ -23,97 +23,73 @@ if(!isset($_SESSION["LoggedIn"])){
         <div class="content main" id="content-main">
         <?php include("./header.php")?>  
            <div class="content-infor">
-                <div class="left">
-                    <div class="card table-infor">
+           <div class="left">
+           <div class="card table-infor">
                         <div class="card-body">
                         <p class="heading-text">
-                            Update products details
+                            Current price 
                         </p>  
-                  <div class="form-group1">  
-                    <label for="Products">Select product</label>
-                    <select id="productName" class="form-control">
-                        <!-- <option value="select">select</option> -->
-                        <!-- dynamically add options -->
-                    </select> 
-            </div>
-            <div class="form-group1">  
-                         <label for="InputName">New name</label>
-                         <input type="text"class="form-control" id="ProductNewName" aria-describedby="ProductNewName" placeholder="Enter product new name" name="product"> 
-        </div> 
-        <label for="Symbols">Select symbol</label>
-              <select id="symbols" class="form-control">
-                   
-                  <?php include("./symbols.php")  ?>
-                  
-                  
-              </select> 
-              <div class="form-group1"> 
-                <label for="checkbox">Status </label>
-              <input class="form-check-input" type="checkbox"  id="status" value="Available" checked> 
-              <label class="form-check-label" for="flexSwitchCheckDefault">Available</label>
-            </div> 
-            <div class="form-group1">
-             <h6 class="form-group1 error" id="product_error" ><small></small></h6> 
-            </div>
-            <div class="form-group1">
-              <button type="button" id="btn_update_product" class="btn btn-primary btn-block" name="btn_update_product">Update</button>   
-              </div> 
+            					<table class="table products table-hover">
+      							<thead class="table-dark">
+                              <tr> 
+                                <th scope="col">Product</th>
+                                <th scope="col">Symbol</th>
+                                <th scope="col">Price</th> 
+                                <th scope="col">Status</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Time</th>
+                            </tr>
+      								</thead  >
+            					    	<tbody id="all-product"> 
+                           
+            						    </tbody>
+      						</table> 
                 </div>
-            </div>
-                </div>
+           </div>
                 
-                <div class="right">
-                <div class="card table-infor">
-                        <div class="card-body">
-                        <p class="heading-text">
-                            Delete product
-                        </p>  
-                       
-                    <div class="form-group1">  
-                    <label for="Products">Select product</label>
-                    <select id="deleteProduct" class="form-control">
-                        <!-- <option value="select">select</option> -->
-                        <!-- dynamically add options -->
-                    </select>  
-                    </div>
-                    <div class="form-group1">
-                     <h6 class="form-group1 error" id="delete_error"  ><small></small></h6> 
-                    </div> 
-                    <div class="form-group1">
-                    <button type="button" id="btn_delete" class="btn btn-danger">Delete</button>
-                    </div>
+            <div class="right">
+            <div class="card table-infor">
+            <div class="card-body">
+            <p class="heading-text">
+                              Price history  
+                            </p>  
+                            <table class="table products table-hover">
+                            <thead class="table-dark">
+                            <tr> 
+                                <th scope="col">Product</th>
+                                <th scope="col">Symbol</th>
+                                <th scope="col">Price</th> 
+                                <th scope="col">Date</th>
+                                <th scope="col">Time</th>
+                            </tr>
+                            </thead>
+                            <tbody id="all-time-price"> 
+                               <?php 
+                                $userid = $_SESSION["UserType"];
+                                $q1="SELECT * FROM view_product_price WHERE Regid=$userid LIMIT 10" ;
+                                // $q1 = $conn->query($q1);
+                                // while($row = mysqli_fetch_assoc($q1)){
+                                //   echo $row;
+                                //   extract($row); 
+                                 ?> 
+                                 <!-- <tr> 
+                                 <td><?php echo $row["Name"]; ?></td>
+                                 <td><?php echo $row["Symbol"] ;?></td>
+                                 <td><?php echo $row["Cost"]; ?></td>
+                                 <td><?php echo $row["Date"]; ?></td>
+                                 <td><?php echo $row["Time"]; ?></td>
+                                </tr> -->
+                                <?php
+                                // } 
+                                ?>   
+                            
+                           </tbody>
+                      </table>
                 </div>
-              </div>  
-              
-              <div class="card table-infor">
-                        <div class="card-body">
-                        <p class="heading-text">
-                            Update status
-                        </p>  
-                       
-                    <div class="form-group1">  
-                    <label for="Products">Select product</label>
-                    <select id="updateProStatus" class="form-control">
-                        <!-- <option value="select">select</option> -->
-                        <!-- dynamically add options -->
-                    </select>  
-                    </div>
-                    <div class="form-group1"> 
-                        <label for="checkbox">Status </label>
-                      <input class="form-check-input" type="checkbox"  id="update_status" value="Available" checked> 
-                      <label class="form-check-label" for="flexSwitchCheckDefault">Available</label>
-                   </div> 
-                    <div class="form-group1">
-                     <h6 class="form-group1 error" id="status_error"  ><small></small></h6> 
-                    </div> 
-                    <div class="form-group1">
-                    <button type="button" id="btn_update_status" class="btn btn-info">Update</button>
-                    </div>
-                </div>
-              </div>  
-              
-              
-                </div>
+              </div>
+                
+          </div>
+
            </div>
         </div>
   
@@ -199,11 +175,11 @@ if(!isset($_SESSION["LoggedIn"])){
    btn_updateprice_model.style.display='none'; 
    var error=""; 
    
-   $("#dashboard").removeClass('active-btn');
-   $("#dashboard_links").removeClass('active-list');
+   $("#dashboard").addClass('active-btn');
+   $("#dashboard_links").addClass('active-list');
    
-   $("#updateprice_links").addClass('active-btn');
-   $("#updateProduct").addClass('active-list');
+   $("#updateprice_links").removeClass('active-btn');
+   $("#updateProduct").removeClass('active-list');
   
    loadproduct();
   var status=$("#status").val(); 

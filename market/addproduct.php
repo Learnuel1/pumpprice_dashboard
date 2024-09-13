@@ -1,10 +1,11 @@
+
 <!--ADD NEW PRODUCT MODAL -->
-  <!-- Button trigger modal -->
-  <button type="button" id="addProduct_model" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> 
+<!-- Button trigger modal -->
+  <button type="button" id="btn_addProduct_modal" data-bs-toggle="modal" data-bs-target="#addProduct_modal"> 
   </button>
   
   <!-- Modal -->
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal fade" id="addProduct_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
       <div class="modal-content">
         <div class="modal-header">
@@ -19,8 +20,10 @@
         </div>
         <div class="form-group1"> 
               <label for="Symbols">Select symbol</label>
-              <select id="symbols" class="form-control">
-                  <?php include("./symbols.php")?>
+              <select id="pro_symbols" class="form-control">
+                
+                  <?php include("./symbols.php")  ?>
+                  
               </select> 
             </div>
             <div class="form-group1"> 
@@ -33,7 +36,7 @@
                     <input type="number" class="form-control" id="Price" aria-describedby="price" placeholder="Enter product price" name="price">   
             </div> 
             <div class="form-group1">
-               <h6 class="form-group1" id="error"><small></small></h6> 
+               <h6 class="form-group1 error" id="error"><small></small></h6> 
               </div>
               <div class="form-group1">
               <button type="button" id="btn-save-product" class="btn btn-primary btn-block" name="save">Save</button>   
@@ -44,3 +47,9 @@
       </div>
     </div>
   </div> 
+  
+<!-- UPDATE PRODUCT PRICE MODAL--> 
+  <!-- Button trigger modal -->
+  <button type="button" id="btn_updateprice_model" data-bs-toggle="modal" data-bs-target="#UpdatePrice_modal"> 
+  </button> 
+  <!-- Modal -->
