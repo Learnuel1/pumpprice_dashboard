@@ -129,7 +129,6 @@ if(isset($_POST["add_product"])){
    $status=$db->conn->real_escape_string( $_POST["status"]); 
    $price=$db->conn->real_escape_string( $_POST["price"]);  
    $usertype=$db->conn->real_escape_string( $_POST["usertype"]);
-
    $product = new Product();
    if($product->product_exist($name,$usertype,$db->conn)){
       echo json_encode(array("Error"=>"Product already exists"));
@@ -137,7 +136,7 @@ if(isset($_POST["add_product"])){
       echo json_encode(array("Error"=>"Symbol exists for a product"));
    }else{
       //store product
-      $product->save($name,$symbol,$status,$price,$usertype,$db->conn); 
+      $product->save($name,$symbol,$status,$price,$usertype,$db->conn);
       if($product->Error_log==null){ 
          echo json_encode(array("Success"=>"success"));
       }else{ 
