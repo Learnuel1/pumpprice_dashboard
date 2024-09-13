@@ -36,14 +36,7 @@ WHERE Regid=userid;
 END //
 DELIMITER ;
 
-CREATE table currentprice(
-    CuId INT NOT NULL AUTO_INCREMENT
-    ,Proid INT
-    ,Cost DECIMAL(7,2) NOT NULL
-    ,Date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP()
-    ,CONSTRAINT PK_Currentprice PRIMARY KEY(CuId,Proid)
-    ,CONSTRAINT FK_CurrentpriceProduct FOREIGN KEY(Proid) REFERENCES products(Proid) ON DELETE CASCADE
-    );
+
 CREATE VIEW view_current_price
 AS
 SELECT b.Regid AS Userid,b.BusinessName,CAC,b.Address,b.Contact,State,City,b.Website, p.Proid,p.Regid,Name,Symbol,Status,Cost, CONVERT(p.DateAdded,Date)AS Created ,CONVERT(c.Date,Date)AS Date,CONVERT(c.Date,Time)AS Time

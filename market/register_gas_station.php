@@ -79,8 +79,8 @@ session_start();
 
 $(document).ready(function(){
     //hide modal trigger button
-    var completeReg= document.querySelector("#btn_complete_reg_model");
-    var completeSuc= document.querySelector("#btn_notify_model");
+    let completeReg= document.querySelector("#btn_complete_reg_model");
+    let completeSuc= document.querySelector("#btn_notify_model");
     
    completeReg.style.display='none';
    completeSuc.style.display='none';
@@ -88,7 +88,7 @@ $(document).ready(function(){
     $("#register").on('click',function(){
       let error=""; 
       $("#registration-error").html(error)
-      var businessname=$("#businessname").val();
+      let businessname=$("#businessname").val();
   let cacnumber=$("#cacnumber").val();
   let email=$("#email").val();
   let state=$("#state").val();
@@ -126,6 +126,7 @@ $(document).ready(function(){
             error="";
   }else{
     $("#registration-error").html(error) ; 
+    console.log("clicked")
     //use the imported modal to complete the registration
     $("#btn_complete_reg_model").trigger('click');
   
@@ -133,9 +134,9 @@ $(document).ready(function(){
     });
     
    $("#user_register").click(function(){
-    var error="";
-    var password=$("#InputPassword").val();
-        var con_password=$("#InputPassword2").val();  
+    let error="";
+    let password=$("#InputPassword").val();
+        let con_password=$("#InputPassword2").val();  
          if(password =="" || password==null){
             error="Password is required";
         } else if(password.length<2){
@@ -145,14 +146,14 @@ $(document).ready(function(){
         }else if(password !=con_password){
             error="Password mismatch";
         } 
-  var businessname=$("#businessname").val();
-  var cacnumber=$("#cacnumber").val();
-  var email=$("#email").val();
-  var state=$("#state").val();
-  var city=$("#city").val();
-  var businesscontact=$("#businesscontact").val();
-  var address=$("#address").val();
-  var website=$("#webaddress").val();
+  let businessname=$("#businessname").val();
+  let cacnumber=$("#cacnumber").val();
+  let email=$("#email").val();
+  let state=$("#state").val();
+  let city=$("#city").val();
+  let businesscontact=$("#businesscontact").val();
+  let address=$("#address").val();
+  let website=$("#webaddress").val();
   
   if(website ==="" || website===null){
   website="none";

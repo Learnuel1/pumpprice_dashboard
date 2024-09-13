@@ -144,7 +144,7 @@ if(!isset($_SESSION["LoggedIn"])){
 
 
 <!--ADD NEW PRODUCT MODAL -->
-  <!-- Button trigger modal -->
+  Button trigger modal
   <button type="button" id="btn_addProduct_modal" data-bs-toggle="modal" data-bs-target="#addProduct_modal"> 
   </button>
   
@@ -195,8 +195,7 @@ if(!isset($_SESSION["LoggedIn"])){
 <!-- UPDATE PRODUCT PRICE MODAL--> 
   <!-- Button trigger modal -->
   <button type="button" id="btn_updateprice_model" data-bs-toggle="modal" data-bs-target="#UpdatePrice_modal"> 
-  </button>
-  
+  </button> 
   <!-- Modal -->
   <div class="modal fade" id="UpdatePrice_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
@@ -277,7 +276,7 @@ if(!isset($_SESSION["LoggedIn"])){
      } 
   });
   
-   $("#addProduct").on('click',function(){ 
+   $("#addProduct").on('click',function(){  
      $("#btn_addProduct_modal").trigger('click');
    });
 
@@ -287,7 +286,7 @@ if(!isset($_SESSION["LoggedIn"])){
      var symbol=$("#pro_symbols").val(); 
      var price=$("#Price").val(); 
      var usertype ="<?php echo $_SESSION["UserType"]; ?>";
-    
+      
       if(product =="" || product==null){
         error="Provide product name";
       }else if(symbol.toLowerCase()=="select"){
@@ -324,7 +323,7 @@ if(!isset($_SESSION["LoggedIn"])){
              }
            }
          
-      }
+      } 
       var price=$("#Price").val(); 
      if(error!=""){
        $("#error").html(error);
@@ -341,12 +340,15 @@ if(!isset($_SESSION["LoggedIn"])){
                price:price,
                usertype:usertype 
              },
-             success:function(response){
+             success: function(response){
                  if(response.Success){  
                    $("#notification_model").trigger('click');
                  } else if (response.Error) {
                    $("#error").html(response.Error);
                  }
+             },
+             error: function(error){
+              $("#error").html(error.responseText);
              },
              dataType:'json'
           });

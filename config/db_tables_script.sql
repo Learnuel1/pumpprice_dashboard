@@ -134,3 +134,12 @@ ALTER TABLE `products`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `FK_UsersBusiness` FOREIGN KEY (`Regid`) REFERENCES `business` (`Regid`) ON DELETE CASCADE;
+
+CREATE table currentprice(
+    CuId INT NOT NULL AUTO_INCREMENT
+    ,Proid INT
+    ,Cost DECIMAL(7,2) NOT NULL
+    ,Date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP()
+    ,CONSTRAINT PK_Currentprice PRIMARY KEY(CuId,Proid)
+    ,CONSTRAINT FK_CurrentpriceProduct FOREIGN KEY(Proid) REFERENCES products(Proid) ON DELETE CASCADE
+    );

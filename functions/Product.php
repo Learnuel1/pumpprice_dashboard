@@ -47,11 +47,11 @@ public function symbol_count($product ,$symbol,$usertype,$conn){
         }
 }
 public function save($product,$symbol,$status,$price,$usertype,$conn){
-    $query="CALL sp_add_product('$product','$usertype','$symbol','$status','$price') ";  
+    $query="CALL sp_add_product('$usertype','$product','$symbol','$status','$price') ";  
     if (mysqli_query($conn, $query)) { 
-                $this->Error_log=null;
+            return    $this->Error_log=null;
     } else {
-        $this->Error_log= $query . "<br>" . mysqli_error($conn);
+       return $this->Error_log= $query . "<br>" . mysqli_error($conn);
     } 
 }
     //GET CURRENT PRICE OF PRODUCTS
