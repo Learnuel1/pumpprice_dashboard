@@ -144,6 +144,9 @@ if(!isset($_SESSION["LoggedIn"])){
 
  <?php include("./addproduct.php") ?>
 
+  <!-- Button trigger modal -->
+  <button type="button" id="btn_updateprice_model" data-bs-toggle="modal" data-bs-target="#UpdatePrice_modal"> 
+  </button>
   <!-- Modal -->
   <div class="modal fade" id="UpdatePrice_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
@@ -192,7 +195,6 @@ if(!isset($_SESSION["LoggedIn"])){
    var addProduct_model= document.querySelector("#btn_addProduct_modal");
    var notification= document.querySelector("#notification_model");
    var headContainer= document.querySelector("#header"); 
-  //  ("#notification_model");
    var btn_updateprice_model= document.querySelector("#btn_updateprice_model"); 
    addProduct_model.style.display='none';
    notification.style.display='none';   
@@ -420,7 +422,7 @@ if(!isset($_SESSION["LoggedIn"])){
    var datarow="<option value=Select>Select</option>" ;
              $("#productName").append(datarow);
              $("#deleteProduct").append(datarow);
-             $("#updateProStatus").append(datarow)
+             $("#updateProStatus").append(datarow) 
      $.ajax({ 
        url:'../functions/Helper.php',
        method:'POST',
@@ -489,8 +491,8 @@ if(!isset($_SESSION["LoggedIn"])){
    
    //load product infor
    $("#updatePrice").click(function(){
-   $("#btn_updateprice_model").trigger('click');
-    loadData();
+     $("#btn_updateprice_model").trigger('click'); 
+      loadData();
    });
    
    function loadData(){
@@ -505,6 +507,7 @@ if(!isset($_SESSION["LoggedIn"])){
        success:function(response){ 
         
          if(response.Error){ 
+          $("#price_error").html(response.Error);
          }else{    
            $(response).each(function(){
              var datarow="<option value='"+this.Proid+"'>"+this.Name+"</option>" ;
@@ -513,6 +516,9 @@ if(!isset($_SESSION["LoggedIn"])){
            }  ); 
            
            } 
+       },
+       error: function(error){ 
+        $("#price_error").html(error.responseText);
        },
        dataType:'json'
      });
@@ -578,6 +584,9 @@ if(!isset($_SESSION["LoggedIn"])){
                    $("#price_error").html(response.Error);
                  }
              },
+             error: function(error){ 
+        $("#price_error").html(error.responseText);
+       },
              dataType:'json'
           });
 

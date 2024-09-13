@@ -1,16 +1,14 @@
  
- PROCEDURES 
+--  PROCEDURES 
  
- 
- DELIMITER //
-CREATE PROCEDURE sp_update_price(IN name varchar(30),IN price decimal(7,2),IN status varchar(20), IN userid INT(11))
+  DELIMITER //
+ CREATE PROCEDURE sp_update_price(IN Proid varchar(30),IN price decimal(7,2),IN status varchar(20), IN userid INT(11))
 BEGIN
- INSERT INTO price(Proid,Cost)
- VALUES((SELECT Proid FROM products WHERE Name=name LIMIT 1),price);
-  
-END //
+ INSERT INTO price(Proid,Cost) VALUES(Proid,price);
+ UPDATE currentprice SET Cost = price, Date = CURRENT_TIMESTAMP() WHERE Proid = Proid;
+ UPDATE products SET Status = status WHERE Proid = Proid AND Regid = userid;
+ END //
 DELIMITER ;
-
 -- CREATE VIEW view_product_price
 -- AS
 -- SELECT p.Regid,Priceid, P.Proid,Name,Symbol,Cost,Status,CONVERT(P.DateAdded,Date)AS Created ,CONVERT(price.Date,Date)AS Date,CONVERT(price.Date,Time)AS Time
@@ -42,16 +40,15 @@ FROM products p INNER JOIN currentprice c ON p.Proid=c.Proid INNER JOIN business
 
 
 DELIMITER //
-CREATE PROCEDURE sp_add_product(IN userid int(11), IN name varchar(50), IN symbol varchar(10),IN pstatus varchar(20),IN price DECIMAL(7,2))
+CREATE  PROCEDURE `sp_add_product`(IN userid int(11), IN name varchar(50), IN symbol varchar(10),IN pstatus varchar(20),IN price DECIMAL(7,2))
 BEGIN
     INSERT INTO products(Regid,Name,Symbol,Status) VALUES(userid,name,symbol,pstatus);
-   INSERT INTO price(Proid,Cost) 
-   VALUES((SELECT Proid FROM products WHERE Regid=userid AND Name=name ORDER BY Proid DESC LIMIT 1),price);
-   INSERT INTO currentprice(Proid,Cost,Date)
-   VALUES((SELECT Proid FROM products WHERE Regid=userid AND Name=name ORDER BY Proid DESC LIMIT 1),price,
-          (SELECT Date FROM price WHERE Proid=(SELECT Proid FROM products WHERE Regid=userid AND Name=name ORDER BY Proid DESC LIMIT 1)
+     SET @lastProductId = LAST_INSERT_ID();
+   INSERT INTO price(Proid,Cost) VALUES(@lastProductId ,price);
+   INSERT INTO currentprice(Proid,Cost,Date) VALUES(@lastProductId ,price,
+          (SELECT Date FROM price WHERE Proid=@lastProductId
  ORDER BY priceid DESC LIMIT 1));
-END //
+ END //
 DELIMITER ;
 
 

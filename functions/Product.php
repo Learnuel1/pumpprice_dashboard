@@ -80,7 +80,9 @@ public function save($product,$symbol,$status,$price,$usertype,$conn){
         
 //get only product name for option box display
 public function get_product_names($usertype,$conn){
-    $product=$conn->query("CALL sp_get_user_products('$usertype')"); 
+    $product=$conn->query("SELECT DISTINCT Proid, Name FROM products
+WHERE Regid=$usertype"); 
+    // $product=$conn->query("CALL sp_get_user_products('$usertype')"); 
     if($product->num_rows>0){  
         while($row = $product->fetch_assoc()){ 
             $result[] =array("Proid"=>$row["Proid"] ,"Name"=>$row["Name"]); 
@@ -94,7 +96,7 @@ public function get_product_names($usertype,$conn){
 // update product details
 public function update_product($oldProduct,$newProduct,$symbol,$status,$usertype,$conn){
    
-    $query="CALL update_product('$oldProduct','$newProduct','$usertype','$symbol','$status') ";  
+    $query="CALL sp_update_product('$oldProduct','$newProduct','$usertype','$symbol','$status') ";  
     if (mysqli_query($conn, $query)) { 
                  $this->Error_log=null;
      } else {
@@ -121,8 +123,8 @@ public function delete_product($product,$usertype,$conn){
 } 
  
 //update product price
-public function update_price($product,$status,$price,$usertype,$conn){ 
-    $query="CALL sp_update_price('$product', '$price','$status','$usertype') "; 
+public function update_price($productId,$status,$price,$usertype,$conn){  
+    $query="CALL sp_update_price('$productId', '$price','$status','$usertype') "; 
 
      if (mysqli_query($conn, $query)) { 
                  $this->Error_log=null;

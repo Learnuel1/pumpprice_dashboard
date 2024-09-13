@@ -79,13 +79,13 @@ session_start();
   </div> 
     <script>
         $(document).ready(function(){
-            var message= document.querySelector("#message_model");
+            let message= document.querySelector("#message_model");
             message.style.display='none';
-            var error="";
+            let error="";
             $("#reset_password").on('click',function(){
-                var email= "<?php echo $_SESSION["Email"]  ?>";
-                var password=$("#InputPassword").val();
-                var con_password=$("#InputPassword2").val();
+                let email= "<?php echo $_SESSION["Email"]  ?>";
+                let password=$("#InputPassword").val();
+                let con_password=$("#InputPassword2").val();
                  
                 if(email==""|| email==null){
                     error="Provide email address";

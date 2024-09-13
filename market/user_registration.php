@@ -84,13 +84,13 @@ session_start();
   
     <script type="text/javascript"> 
         $(document).ready(function(){
-            var message= document.querySelector("#message_model");
+            let message= document.querySelector("#message_model");
             message.style.display='none';
-            var error="";
+            let error="";
            $("#user_register").on('click',function(){ 
-                var email=$("#InputEmail").val();
-                var password=$("#InputPassword").val();
-                var con_password=$("#InputPassword2").val();
+                let email=$("#InputEmail").val();
+                let password=$("#InputPassword").val();
+                let con_password=$("#InputPassword2").val();
                 let regex = new RegExp('[a-z0-9]+@[a-z]+[.]+[a-z]{2,3}');//validate email
                 if(email =="" || email==null){
                     error="Email is required";

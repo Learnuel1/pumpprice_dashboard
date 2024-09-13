@@ -123,8 +123,8 @@ if(!isset($_SESSION["LoggedIn"])){
    <?php include("./addproduct.php") ?>
 <!-- UPDATE PRODUCT PRICE MODAL--> 
   <!-- Button trigger modal -->
-  <!-- <button type="button" id="btn_updateprice_model" data-bs-toggle="modal" data-bs-target="#UpdatePrice_modal"> 
-  </button> -->
+  <button type="button" id="btn_updateprice_model" data-bs-toggle="modal" data-bs-target="#UpdatePrice_modal"> 
+  </button>
   
   <!-- Modal -->
   <div class="modal fade" id="UpdatePrice_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

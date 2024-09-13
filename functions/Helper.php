@@ -17,7 +17,7 @@ $db= new Database();
       exit('user already exist');
     }else{ 
       //send data to database
-        $user->register_user($email,$password,$db->conn);
+        $user->register_user($email, md5($password),$db->conn);
       if($user->Error_log==null){
          echo('success');
       }else{
@@ -47,7 +47,7 @@ if (isset($_POST["register"])){
       throw new Exception("Email already exist");
    }
    else{
-      $user->register_business($businessname,$cacnumber,strtolower($email),$state,$city,$businesscontact,$address,$password,strtolower($website),$db->conn);
+      $user->register_business($businessname,$cacnumber,strtolower($email),$state,$city,$businesscontact,$address, md5($password),strtolower($website),$db->conn);
       if($user->Error_log==null){
          exit('success');
       }else{
@@ -65,7 +65,7 @@ if(isset($_POST["login"])){
    $password = $db->conn->real_escape_string( $_POST["password"]);
    $user = new Userlogin();
    $data=[];
-   $data= $user->login($email,$password,$db->conn);
+   $data= $user->login($email,md5($password),$db->conn);
    if($data=="0"){  
       echo (json_encode(array("Error"=>"incorrect email or password")));
    }else{ 
@@ -114,7 +114,7 @@ if(isset($_POST["reset_password"])){
    $userid=$db->conn->real_escape_string( $_POST["userid"]);
    $password=$db->conn->real_escape_string( $_POST["password"]);
    $user = new Userlogin();
-   $user->reset_password($userid,$email,$password,$db->conn);
+   $user->reset_password($userid,$email,md5($password),$db->conn);
    if($user->Error_log==null){
       exit('success');
    }else{
