@@ -1,0 +1,65 @@
+CREATE TABLE message(
+    MesID INT AUTO_INCREMENT NOT NULL,
+    Fullname varchar(50) NOT NULL,
+    Email varchar(255) NOT NULL,
+    Text varchar(255) NOT NULL,
+    CONSTRAINT PK_Message PRIMARY KEY(MesID)
+    );
+	
+	
+	
+	DELIMITER //
+CREATE PROCEDURE add_product(IN name varchar(30),IN regid int,IN symbol varchar(8),IN pstatus varchar(20),IN price decimal(7,2)
+    )
+BEGIN
+
+	INSERT INTO products(Regid,Name,Symbol,Status) VALUES(regid,name,symbol,pstatus);
+   INSERT INTO price(Proid,Cost) VALUES((SELECT Proid FROM products WHERE Regid=regid ORDER BY Proid DESC LIMIT 1),price);
+
+END //
+DELIMITER ;
+
+CREATE VIEW view_product
+AS
+SELECT p.Proid,Regid AS Userid,Name,Symbol,Cost,Status,DateAdded, Date AS Updated
+FROM products p 
+INNER JOIN price b ON p.Proid=b.Proid
+
+ 
+ PROCEDURES 
+ 
+ 
+ DELIMITER //
+CREATE PROCEDURE sp_update_price(IN name varchar(30),IN price decimal(7,2),IN status varchar(20), IN userid INT(11))
+BEGIN
+ INSERT INTO price(Proid,Cost)
+ VALUES((SELECT Proid FROM products WHERE Name=name LIMIT 1),price);
+  
+END //
+DELIMITER ;
+
+
+
+CREATE VIEW view_product_price
+AS
+SELECT p.Regid,Priceid, P.Proid,Name,Symbol,Cost,Status,CONVERT(P.DateAdded,Date)AS Created ,CONVERT(price.Date,Date)AS Date,CONVERT(price.Date,Time)AS Time
+FROM products P
+INNER JOIN price ON P.Proid=price.Proid
+
+DELIMITER //
+CREATE PROCEDURE sp_get_user_products(IN userid int(11))
+BEGIN
+SELECT DISTINCT Name FROM view_product_price
+WHERE Regid=userid;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_current_products_price(IN product varchar(30),IN userid INT(11))
+BEGIN
+SELECT Regid,Proid,Name,Symbol,Cost,Status,Created,Date,Time
+FROM view_product_price 
+WHERE Name=product AND Regid=userid ORDER BY Priceid DESC LIMIT 1;
+END //
+DELIMITER ;
+

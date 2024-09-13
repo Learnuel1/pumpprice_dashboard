@@ -1,0 +1,143 @@
+
+
+
+ 
+
+.market-section{
+    background: white ;
+    font-size: 16px;
+   display: flex;
+   height: auto;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+.section-container{
+width: 100%;
+display: flex;
+flex-direction:  row;
+justify-content: space-evenly;
+padding: 10px  ; 
+text-align: left;
+align-items: flex-start;
+}
+.head-title{
+font-size: 18px;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+font-weight: 500;
+text-transform: uppercase; 
+padding-top: 10px;  
+border-bottom: 2px solid red;
+}
+.header-card{
+    padding: 5px; 
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-radius: 00.2cm;
+ 
+}
+.table-infor{
+    box-shadow: none;
+    margin-top: 20px;
+}
+
+.products{
+    font-weight: 400;
+    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+ 
+    .details{
+    font-size: 12px
+    }
+    .table thead{
+        font-size: 12px;
+        font-weight: 200;
+    }
+      
+    .bizName{
+        font-weight: 600;
+        color: rgb(7, 27, 77);
+        cursor: pointer;
+        font-size: 16px;
+        cursor: pointer;
+        } 
+    
+    .heading-link{
+        font-weight: 600;
+        color: rgb(7, 27, 77);
+        cursor: pointer;
+        font-size: 14px
+    }
+    .heading .biz-infor{
+        font-weight: 600;
+        color: rgb(7, 27, 77);
+        cursor: pointer;
+        
+    }
+     
+    .proName{
+        font-size: 12px;
+    }
+    
+    .available{
+    color: green;
+       
+    }
+    .not{
+    color: red; 
+    }
+    #product_desc_head{ 
+    font-weight: 600;
+    }
+    
+ .more-infor{
+  border-radius: 0.5cm;
+  border: 1px solid rgb(7, 27, 77,.8);
+  margin: 13px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center; 
+  
+ } 
+ .btn-more{
+ padding: 5px 15px;
+ font-size: 13px;
+ }
+    
+.more-infor:hover{
+background-color: orange;
+border: none;
+}  
+
+.btn-more:hover{
+    color: white;
+    font-size: 15px;
+    }
+    
+@media(max-width:1500px){
+    
+}
+@media (max-width: 576px) { 
+    .landingpage{
+    height: 150vh;
+    }
+    .market-section{ 
+       height: auto; 
+    }
+    .section-container{ 
+        flex-direction:  column; 
+        } 
+        
+        .card{ 
+            flex-direction: column; 
+         padding: 5px 5px;
+         margin-bottom: 5px;
+        }
+} 
