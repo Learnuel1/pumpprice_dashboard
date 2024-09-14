@@ -29,7 +29,7 @@ if(!isset($_SESSION["LoggedIn"])){
                         <p class="heading-text">
                             Current price 
                         </p>  
-            					<table class="table products table-hover">
+            					<table class="table products table-hover" id= "current_price">
       							<thead class="table-dark">
                               <tr> 
                                 <th scope="col">Product</th>
@@ -64,24 +64,7 @@ if(!isset($_SESSION["LoggedIn"])){
                             </tr>
                             </thead>
                             <tbody id="all-time-price"> 
-                               <?php 
-                                $userid = $_SESSION["UserType"];
-                                $q1="SELECT * FROM view_product_price WHERE Regid=$userid LIMIT 10" ;
-                                // $q1 = $conn->query($q1);
-                                // while($row = mysqli_fetch_assoc($q1)){
-                                //   echo $row;
-                                //   extract($row); 
-                                 ?> 
-                                 <!-- <tr> 
-                                 <td><?php echo $row["Name"]; ?></td>
-                                 <td><?php echo $row["Symbol"] ;?></td>
-                                 <td><?php echo $row["Cost"]; ?></td>
-                                 <td><?php echo $row["Date"]; ?></td>
-                                 <td><?php echo $row["Time"]; ?></td>
-                                </tr> -->
-                                <?php
-                                // } 
-                                ?>   
+                               
                             
                            </tbody>
                       </table>
@@ -165,6 +148,8 @@ if(!isset($_SESSION["LoggedIn"])){
 <script>
  
  $(document).ready(function(){
+  loadCurrentPrice();
+  loadPriceHistory();
    var addProduct_model= document.querySelector("#btn_addProduct_modal");
    var notification= document.querySelector("#notification_model");
    var headContainer= document.querySelector("#header"); 
@@ -576,7 +561,66 @@ if(!isset($_SESSION["LoggedIn"])){
   $("#btn-close-details_update").on('click',function(){
     $("#productsName").empty();
   });
-  
+  function loadCurrentPrice(){ 
+             $.ajax({ 
+       url:'../functions/Helper.php',
+       method:'POST',
+       data:{get_current_price:1, 
+         userid:"<?php echo $_SESSION["UserType"];  ?>"
+          }, 
+       success:function(response){  
+         if(response.Error){  
+         }else{    
+           $(response).each(function(){
+            let dataRow = "<tr>" +
+                "<td>" + this.Name + "</td>" +
+                "<td>" + this.Symbol + "</td>" +
+                "<td>" + this.Cost + "</td>" +
+                "<td>" + this.Status + "</td>" +
+                "<td>" + this.Date + "</td>" +
+                "<td>" + this.Time + "</td>" +
+              "</tr>";
+             $("#current_price").append(dataRow); 
+                 
+           }  ); 
+           
+           } 
+       },
+       error: function(error){ 
+       },
+       dataType:'json'
+     }); 
+   } 
+  function loadPriceHistory(){ 
+             $.ajax({ 
+       url:'../functions/Helper.php',
+       method:'POST',
+       data:{get_price_history:1, 
+         userid:"<?php echo $_SESSION["UserType"];  ?>"
+          }, 
+       success:function(response){  
+         if(response.Error){  
+         }else{    
+           $(response).each(function(){
+            let dataRow = "<tr>" +
+                "<td>" + this.Name + "</td>" +
+                "<td>" + this.Symbol + "</td>" +
+                "<td>" + this.Cost + "</td>" +
+                "<td>" + this.Date + "</td>" +
+                "<td>" + this.Time + "</td>" +
+              "</tr>";
+             $("#all-time-price").append(dataRow); 
+                 
+           }  ); 
+           
+           } 
+       },
+       error: function(error){
+        console.log(error)
+       },
+       dataType:'json'
+     }); 
+   } 
   });
 </script>
 <script src="../js/bootstrap.min.js"></script>

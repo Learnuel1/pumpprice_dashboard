@@ -105,7 +105,6 @@ public function update_product($oldProduct,$newProduct,$symbol,$status,$usertype
 }
 // update product status
 public function update_status($Product,$status,$usertype,$conn){
-   
     $query="UPDATE products SET Status='$status' WHERE Name='$Product' AND Regid='$usertype'";  
     if (mysqli_query($conn, $query)) { 
                  $this->Error_log=null;
@@ -227,6 +226,32 @@ public function state_search($search,$conn){
                 return $result[]= array("None"=>"None");
               }
             } 
+    
+  
+    public function get_current_price ($usertype,$conn){
+      $query="SELECT BusinessName,Address,Contact,Symbol,Status, Cost,State,City,Name,Date,Time FROM view_current_price WHERE Userid='$usertype'";
+      $product=$conn->query($query); 
+        if($product->num_rows>0){  
+            while($row= $product->fetch_assoc()){
+            $result[] =  $row;
+            }
+            return $result;
+              } else{
+                return $result[]= array("None"=>"None");
+              }
+            }
+    public function get_price_history ($usertype,$conn){
+      $query="SELECT BusinessName,Address,Contact,Symbol,Status, Cost,State,City,Name,Date,Time FROM view_current_price WHERE Userid='$usertype' AND Date >= DATE_SUB(NOW(), INTERVAL 7 DAY) ORDER BY Date, time ASC";
+      $product=$conn->query($query); 
+        if($product->num_rows>0){  
+            while($row= $product->fetch_assoc()){
+            $result[] =  $row;
+            }
+            return $result;
+              } else{
+                return $result[]= array("None"=>"None");
+              }
+            }
     
   }
   

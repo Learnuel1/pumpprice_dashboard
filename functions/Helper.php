@@ -224,8 +224,6 @@ if(isset($_POST["update_status"])){
    $name=$db->conn->real_escape_string( $_POST["product"]);  
    $status=$db->conn->real_escape_string( $_POST["updatestatus"]);  
    $userid=$db->conn->real_escape_string( $_POST["userid"]);
-   print_r($name);
-   print_r($status);
    $product = new Product();
    
       //store product
@@ -321,7 +319,30 @@ if(isset($_GET["watch_list_search"])){
      echo json_encode(array("Error"=>$product->Error_log));
   }
 }
-
+if(isset($_POST["get_current_price"])) { 
+   $userid=$db->conn->real_escape_string( $_POST["userid"]); 
+   $product = new Product(); 
+   $data= $product->get_current_price($userid,$db->conn);
+   
+   if($product->Error_log==null){ 
+      echo json_encode($data); 
+}else{ 
+  echo json_encode(array("Error"=>$product->Error_log));
+}
+    
+   }
+if(isset($_POST["get_price_history"])) { 
+   $userid=$db->conn->real_escape_string( $_POST["userid"]); 
+   $product = new Product(); 
+   $data= $product->get_price_history($userid,$db->conn);
+   
+   if($product->Error_log==null){ 
+      echo json_encode($data); 
+}else{ 
+  echo json_encode(array("Error"=>$product->Error_log));
+}
+    
+   }
 ?>
 
  

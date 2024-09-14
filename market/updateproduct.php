@@ -374,6 +374,9 @@ if(!isset($_SESSION["LoggedIn"])){
                   
            } 
        },
+       error: function(error){
+              $("#product_error").html(error.responseText);
+             },
        dataType:'json'
      });
      }
@@ -382,8 +385,8 @@ if(!isset($_SESSION["LoggedIn"])){
    
    //update product status
    $("#btn_update_status").click(function () { 
-    var product=$("#updateProStatus").val(); 
-     var error="";
+    let product=$("#updateProStatus").val(); 
+     let error="";
      
      if(product==="" || product===null || product.toLowerCase()==="select"){
      error="Select a product";
@@ -404,12 +407,16 @@ if(!isset($_SESSION["LoggedIn"])){
          userid:"<?php echo $_SESSION["UserType"];  ?>"
           }, 
        success:function(response){
+        console.log(response)
                 if(response.Success){  
                    $("#notification_model").trigger('click');
                  } else if (response.Error) {
                    $("#status_error").html(response.Error);
                  }
        },
+       error: function(error){
+              $("#status_error").html(error.responseText);
+             },
        dataType:'json'
      });
      
@@ -452,7 +459,7 @@ if(!isset($_SESSION["LoggedIn"])){
            }  ); 
            
            } 
-       },
+       }, 
        dataType:'json'
      }); 
    }
@@ -484,6 +491,9 @@ if(!isset($_SESSION["LoggedIn"])){
           $("#notification_model").trigger('click'); 
            } 
        },
+       error: function(error){
+              $("#delete_error").html(error.responseText);
+             },
        dataType:'json'
      }); 
      }
@@ -594,7 +604,7 @@ if(!isset($_SESSION["LoggedIn"])){
      }
    });
    //update product price status
-   var updated_status=$("#updated_status").val(); 
+   let updated_status=$("#updated_status").val(); 
   $("#updated_status").on('change',function(){ 
      if($(this).prop('checked')){
        updated_status=$("#status").val(); 
