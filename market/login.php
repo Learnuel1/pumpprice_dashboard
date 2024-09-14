@@ -65,11 +65,11 @@
           
     <script>
      $(document).ready(function(){ 
-        var error=""; 
+        let error=""; 
            
         $("#login").on('click',function(){
-                var email=$("#InputEmail").val();
-                var password=$("#InputPassword").val();
+                let email=$("#InputEmail").val();
+                let password=$("#InputPassword").val();
                 let regex = new RegExp('[a-z0-9]+@[a-z]+[.]+[a-z]{2,3}');
                 email =email.toLowerCase();
                 if(email=="" || email==null){

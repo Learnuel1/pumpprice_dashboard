@@ -17,7 +17,7 @@ $db= new Database();
       exit('user already exist');
     }else{ 
       //send data to database
-        $user->register_user($email,$password,$db->conn);
+        $user->register_user($email, md5($password),$db->conn);
       if($user->Error_log==null){
          echo('success');
       }else{
@@ -47,7 +47,7 @@ if (isset($_POST["register"])){
       throw new Exception("Email already exist");
    }
    else{
-      $user->register_business($businessname,$cacnumber,strtolower($email),$state,$city,$businesscontact,$address,$password,strtolower($website),$db->conn);
+      $user->register_business($businessname,$cacnumber,strtolower($email),$state,$city,$businesscontact,$address, md5($password),strtolower($website),$db->conn);
       if($user->Error_log==null){
          exit('success');
       }else{
@@ -65,7 +65,7 @@ if(isset($_POST["login"])){
    $password = $db->conn->real_escape_string( $_POST["password"]);
    $user = new Userlogin();
    $data=[];
-   $data= $user->login($email,$password,$db->conn);
+   $data= $user->login($email,md5($password),$db->conn);
    if($data=="0"){  
       echo (json_encode(array("Error"=>"incorrect email or password")));
    }else{ 
@@ -114,7 +114,7 @@ if(isset($_POST["reset_password"])){
    $userid=$db->conn->real_escape_string( $_POST["userid"]);
    $password=$db->conn->real_escape_string( $_POST["password"]);
    $user = new Userlogin();
-   $user->reset_password($userid,$email,$password,$db->conn);
+   $user->reset_password($userid,$email,md5($password),$db->conn);
    if($user->Error_log==null){
       exit('success');
    }else{
@@ -198,18 +198,18 @@ if(isset($_POST["product_update"])){
 //update product price
 
 if(isset($_POST["update_price"])){
-   $name=$db->conn->real_escape_string( $_POST["p_product"]);  
+   $proId=$db->conn->real_escape_string( $_POST["p_product"]);  
    $status=$db->conn->real_escape_string( $_POST["status"]);    
    $price=$db->conn->real_escape_string( $_POST["price"]); 
    $userid=$db->conn->real_escape_string( $_POST["userid"]);
 
    $product = new Product();
-   if($product->product_exist($name,$userid,$db->conn)){
+   if($product->product_exist($proId,$userid,$db->conn)){
       echo json_encode(array("Error"=>"Product does not exist"));
    }  
    else{
       //store product
-      $product->update_price($name,$status,$price,$userid,$db->conn); 
+      $product->update_price($proId,$status,$price,$userid,$db->conn); 
       if($product->Error_log==null){ 
       unset( $_POST["product"]); 
          echo json_encode(array("Success"=>"success"));
@@ -224,7 +224,8 @@ if(isset($_POST["update_status"])){
    $name=$db->conn->real_escape_string( $_POST["product"]);  
    $status=$db->conn->real_escape_string( $_POST["updatestatus"]);  
    $userid=$db->conn->real_escape_string( $_POST["userid"]);
-
+   print_r($name);
+   print_r($status);
    $product = new Product();
    
       //store product

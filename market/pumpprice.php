@@ -201,19 +201,18 @@ if(!isset($_SESSION["UserType"])){
     </div>
     
 </div>
-
-<?php  include_once("./footer.php")?> 
+ 
 <?php  include_once("./product_search_result.php")?> 
 <?php  include_once("./watch_search_modal.php")?> 
  <script>
   $(document).ready(function(){ 
-  var search_modal_btn = document.querySelector("#search_result_model");
-  var search_watchlist_btn = document.querySelector("#btn_watchlist_search_modal");
+  let search_modal_btn = document.querySelector("#search_result_model");
+  let search_watchlist_btn = document.querySelector("#btn_watchlist_search_modal");
   
   search_watchlist_btn.style.display='none';
   search_modal_btn.style.display='none';
     $(document.body).on("click",'tr[data-href]',function(){  
-        var proname=this.dataset.href;  
+        let proname=this.dataset.href;  
            
         $.ajax({  
         url:'../functions/search_helper.php',
@@ -232,7 +231,7 @@ if(!isset($_SESSION["UserType"])){
     });
   
     $("#station-searchtext").on('input',function(){ 
-    var text = $("#station-searchtext").val();
+    let text = $("#station-searchtext").val();
     
     if(text==="" || text==null || text.length<3){
     $("#search-result").empty(); 
@@ -250,7 +249,7 @@ if(!isset($_SESSION["UserType"])){
             if(response.Error || response.None){ 
             }else{
                $(response).each(function(){ 
-                var search ="<button class=button-result data='"+this.BusinessName +"' id='"+this.BusinessName +"'>"+this.BusinessName+" <br><h6> <small>"+this.Address+"</small></h6></button>";
+                let search ="<button class=button-result data='"+this.BusinessName +"' id='"+this.BusinessName +"'>"+this.BusinessName+" <br><h6> <small>"+this.Address+"</small></h6></button>";
             $("#search-result").append(search);
             
                });
@@ -265,20 +264,20 @@ if(!isset($_SESSION["UserType"])){
     
     }
     });  
-    var container=document.querySelector(".search-container");
+    let container=document.querySelector(".search-container");
     container.classList.add('search-container--visible')
     $("#station-searchtext").on('keypress',function(){
     
     });
     
     $(".button-result").on('click',function(e){
-       //var data = this.dataset.href;
+       //let data = this.dataset.href;
         console.log(e);
     });
     
     $("#btn_state").click(function(){
-        var cstate=$("#state_option").val();
-        var resultcontainer = document.querySelector("#search_result_modal_body");
+        let cstate=$("#state_option").val();
+        let resultcontainer = document.querySelector("#search_result_modal_body");
         if(cstate !="" && cstate.toLowerCase()!="state"){
             
             $.ajax({ 
@@ -291,29 +290,29 @@ if(!isset($_SESSION["UserType"])){
                 success:function(response){
                     
                     if(!response.None){ 
-                    var firstName="";
-                    var tableRow="";
+                    let firstName="";
+                    let tableRow="";
                      $(response).each(function(){
                        
                        if(firstName !=this.Userid){
-                        var heading=" <h5 class=" +"heading details id="+this.Userid +" ><i class=" +"fa fa-building-o biz-infor "+" aria-hidden=" +"true"+"></i>"+this.BusinessName+"</h5>";
+                        let heading=" <h5 class=" +"heading details id="+this.Userid +" ><i class=" +"fa fa-building-o biz-infor "+" aria-hidden=" +"true"+"></i>"+this.BusinessName+"</h5>";
                        $(resultcontainer).append(heading); 
-                        var tableElm="<table class=table table-hover><thead><tr>  </tr> </thead> <tbody id=tr"+this.Userid+"> </tbody> </table>";
+                        let tableElm="<table class=table table-hover><thead><tr>  </tr> </thead> <tbody id=tr"+this.Userid+"> </tbody> </table>";
                          $(resultcontainer).append(tableElm);
                           tableRow = document.querySelector("#tr" +this.Userid);
-                          var type="available";
+                          let type="available";
                        if(this.Status.toLowerCase()!="available"){
                        type="not";
                        }
-                        var search_result="<tr><td>"+ this.Name +"</td> <td>"+this.Symbol +"</td> <td>"+ this.Cost +"</td> <td> <i class=fa fa-circle "+type +" aria-hidden=" +"true "+">  "+ this.Status + "</td> </tr>";
+                        let search_result="<tr><td>"+ this.Name +"</td> <td>"+this.Symbol +"</td> <td>"+ this.Cost +"</td> <td> <i class=fa fa-circle "+type +" aria-hidden=" +"true "+">  "+ this.Status + "</td> </tr>";
                          $(tableRow).append(search_result);
                          firstName=this.Userid;
                        }else{
-                       var type="available";
+                       let type="available";
                        if(this.Status.toLowerCase()!="available"){
                        type="not";
                        }
-                        var search_result="<tr><td>"+ this.Name +"</td> <td>"+this.Symbol +"</td> <td>"+ this.Cost +"</td> <td> <i class=" +"fa fa-circle "+type +" aria-hidden=" +"true "+">  "+ this.Status + "</td> </tr>";
+                        let search_result="<tr><td>"+ this.Name +"</td> <td>"+this.Symbol +"</td> <td>"+ this.Cost +"</td> <td> <i class=" +"fa fa-circle "+type +" aria-hidden=" +"true "+">  "+ this.Status + "</td> </tr>";
                          $(tableRow).append(search_result);
                           
                        }
@@ -331,12 +330,12 @@ if(!isset($_SESSION["UserType"])){
     
     //state and city search
     $("#state_option").change(function(){
-            var state= $("#state_option").val(); 
+            let state= $("#state_option").val(); 
             if(state !="" && state.toLowerCase()!="state"){
                 $("#city_option").empty();
-                 var defOptions="<option value=City> Select City</option>";
+                 let defOptions="<option value=City> Select City</option>";
                  $("#city_option").append(defOptions);
-                var elem=document.querySelector("#city_option");
+                let elem=document.querySelector("#city_option");
                 $.ajax({ 
                 url:'../functions/Helper.php',
                 method:'GET',
@@ -348,7 +347,7 @@ if(!isset($_SESSION["UserType"])){
                 
                 if(!response.Error || !response.None){
                 $(response).each(function(){
-                    var cityOptions="<option value='"+this.City+"'>"+this.City +"</option>";
+                    let cityOptions="<option value='"+this.City+"'>"+this.City +"</option>";
                  $(elem).append(cityOptions); 
                 });
                 
@@ -363,8 +362,8 @@ if(!isset($_SESSION["UserType"])){
             }
     });
     $("#btn_city").click(function(){
-    var pstate =$("#state_option").val();
-    var city=$("#city_option").val();
+    let pstate =$("#state_option").val();
+    let city=$("#city_option").val();
     
     if(pstate.toLowerCase() !="state" && city.toLowerCase() !="city"){
     
@@ -393,7 +392,7 @@ if(!isset($_SESSION["UserType"])){
       
       $(".bizName").on('click',function(e){ 
            
-       var name=e.currentTarget.attributes.data.nodeValue;
+       let name=e.currentTarget.attributes.data.nodeValue;
          
           $.ajax({ 
             url:'../functions/Helper.php',
@@ -405,14 +404,14 @@ if(!isset($_SESSION["UserType"])){
               success:function(response){
                   
                   if(!response.Error || response.None){
-                  var name= response[0];
+                  let name= response[0];
                   console.log(name);
-                  var detainsContainer="<div class=Details-container id=Details-container> <div class=topheader><h5>Locations of:</<h5><h5 class=bizName><i class="+'"fa fa-building-o biz-infor aria-hidden="'+"true"+"></i>  "+name[1]+"</h5>  </div></div>";
-    var modalBody =document.querySelector("#search_result_modal_body");
+                  let detainsContainer="<div class=Details-container id=Details-container> <div class=topheader><h5>Locations of:</<h5><h5 class=bizName><i class="+'"fa fa-building-o biz-infor aria-hidden="'+"true"+"></i>  "+name[1]+"</h5>  </div></div>";
+    let modalBody =document.querySelector("#search_result_modal_body");
                  $(modalBody).append(detainsContainer);
                 
                  $(response).each(function(){
-                      var result=" <div class=topheader> <p><h5 class=heading details> <i class="+'"fa fa-map-marker biz-infor aria-hidden="'+"true"+"></i>  "+this.Address+"</h5></p>  </div> <div class=footinfor><h5 class=heading details> <i class="+'"fa fa-phone biz-infor aria-hidden="'+"true"+"></i>  "+this.Contact+" </h5><h5 class=heading details> <i class="+'"fa fa-product-hunt biz-infor aria-hidden="'+"true"+"></i>  "+this.City+"</h5><h5>"+this.State+"</h5> </div><hr>";
+                      let result=" <div class=topheader> <p><h5 class=heading details> <i class="+'"fa fa-map-marker biz-infor aria-hidden="'+"true"+"></i>  "+this.Address+"</h5></p>  </div> <div class=footinfor><h5 class=heading details> <i class="+'"fa fa-phone biz-infor aria-hidden="'+"true"+"></i>  "+this.Contact+" </h5><h5 class=heading details> <i class="+'"fa fa-product-hunt biz-infor aria-hidden="'+"true"+"></i>  "+this.City+"</h5><h5>"+this.State+"</h5> </div><hr>";
                       $(modalBody).append(result);
                  });
                  $("#search_result_model").trigger('click');
@@ -432,9 +431,9 @@ if(!isset($_SESSION["UserType"])){
     }); 
      
      $("#watchlist_searchtext").on('input',function () {
-      var search=$("#watchlist_searchtext").val();
+      let search=$("#watchlist_searchtext").val();
       $("#watch_container").empty();
-      var container=document.querySelector("#watch_container");
+      let container=document.querySelector("#watch_container");
       if(search.length>2){ 
       $.ajax({
        url:'../functions/Helper.php',
@@ -447,7 +446,7 @@ if(!isset($_SESSION["UserType"])){
             if(!response.None || !response.Error){
            $(response).each(function(){
            //create div 
-           var DataItem="<div class="+"watch_searchItems"+" ><div class="+"search-address"+"><spand class="+"watch_list"+">"+this.BusinessName+"</spand> <span class="+"watch_list"+">"+this.Name+"</span> <span class="+"watch_list"+">"+this.Cost+"</span>  <button class="+"btn btn-mywatch btn-watch"+" id="+this.Proid+"><i class="+"'fa fa-plus-circle list_add'"+" aria-hidden="+"true"+"></i> </button></span></div> <div class="+"search-address"+">"+this.Address+"</div></div><hr>"; 
+           let DataItem="<div class="+"watch_searchItems"+" ><div class="+"search-address"+"><spand class="+"watch_list"+">"+this.BusinessName+"</spand> <span class="+"watch_list"+">"+this.Name+"</span> <span class="+"watch_list"+">"+this.Cost+"</span>  <button class="+"btn btn-mywatch btn-watch"+" id="+this.Proid+"><i class="+"'fa fa-plus-circle list_add'"+" aria-hidden="+"true"+"></i> </button></span></div> <div class="+"search-address"+">"+this.Address+"</div></div><hr>"; 
            
            $(container).append(DataItem);
            });
