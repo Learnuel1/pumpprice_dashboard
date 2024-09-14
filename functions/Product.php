@@ -105,7 +105,6 @@ public function update_product($oldProduct,$newProduct,$symbol,$status,$usertype
 }
 // update product status
 public function update_status($Product,$status,$usertype,$conn){
-   
     $query="UPDATE products SET Status='$status' WHERE Name='$Product' AND Regid='$usertype'";  
     if (mysqli_query($conn, $query)) { 
                  $this->Error_log=null;

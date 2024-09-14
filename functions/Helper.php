@@ -224,8 +224,6 @@ if(isset($_POST["update_status"])){
    $name=$db->conn->real_escape_string( $_POST["product"]);  
    $status=$db->conn->real_escape_string( $_POST["updatestatus"]);  
    $userid=$db->conn->real_escape_string( $_POST["userid"]);
-   print_r($name);
-   print_r($status);
    $product = new Product();
    
       //store product

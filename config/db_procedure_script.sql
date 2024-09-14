@@ -53,9 +53,16 @@ CREATE PROCEDURE sp_register_business(IN name varchar(60), IN CAC varchar(30), I
    END //
    DELIMITER ;
 
-   
+  DELIMITER //
+CREATE  PROCEDURE `sp_update_product`(IN oldname varchar(50),IN newname varchar(50),IN userid int(11),  IN symbol varchar(10),IN pstatus varchar(20))
+BEGIN
+    UPDATE products SET Name = newname, Symbol =symbol , Status = pstatus WHERE Name = oldname AND Regid = userid;
+ END //
+DELIMITER ;
+
 CREATE VIEW view_current_price
 AS
 SELECT b.Regid AS Userid,b.BusinessName,CAC,b.Address,b.Contact,State,City,b.Website, p.Proid,p.Regid,Name,Symbol,Status,Cost, CONVERT(p.DateAdded,Date)AS Created ,CONVERT(c.Date,Date)AS Date,CONVERT(c.Date,Time)AS Time
 FROM products p INNER JOIN currentprice c ON p.Proid=c.Proid INNER JOIN business b ON p.Regid=b.Regid
+
 
