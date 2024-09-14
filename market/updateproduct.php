@@ -524,8 +524,9 @@ if(!isset($_SESSION["LoggedIn"])){
      });
    
    } 
+
    $("#btn_update_price").click(function(){ 
-    var p_product=$("#select_product").val();  
+    var p_product=$("#select_product").val(); 
      var price=$("#new_Price").val();  
      if(p_product =="" || p_product==null || p_product.toLowerCase()==="select"){
         error="Select product";
@@ -562,7 +563,7 @@ if(!isset($_SESSION["LoggedIn"])){
            }
          
       }
-      var price=$("#new_Price").val(); 
+      var price=$("#new_Price").val();  
      if(error!=""){
        $("#price_error").html(error);
        error="";

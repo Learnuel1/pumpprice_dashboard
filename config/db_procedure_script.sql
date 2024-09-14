@@ -1,19 +1,16 @@
  
 --  PROCEDURES 
- 
-  DELIMITER //
- CREATE PROCEDURE sp_update_price(IN Proid varchar(30),IN price decimal(7,2),IN status varchar(20), IN userid INT(11))
+ use marketwatch_db;
+   DELIMITER //
+ CREATE PROCEDURE sp_update_price(IN productId varchar(30),IN price decimal(7,2),IN status varchar(20), IN userid INT(11))
 BEGIN
- INSERT INTO price(Proid,Cost) VALUES(Proid,price);
- UPDATE currentprice SET Cost = price, Date = CURRENT_TIMESTAMP() WHERE Proid = Proid;
- UPDATE products SET Status = status WHERE Proid = Proid AND Regid = userid;
+ INSERT INTO price(Proid,Cost) VALUES(productId,price);
+ UPDATE currentprice SET Cost = price, Date = CURRENT_TIMESTAMP() WHERE CuId =(SELECT CuId FROM currentprice WHERE Proid = productId);
+ UPDATE products SET Status = status WHERE Proid = productId AND Regid = userid;
  END //
 DELIMITER ;
--- CREATE VIEW view_product_price
--- AS
--- SELECT p.Regid,Priceid, P.Proid,Name,Symbol,Cost,Status,CONVERT(P.DateAdded,Date)AS Created ,CONVERT(price.Date,Date)AS Date,CONVERT(price.Date,Time)AS Time
--- FROM products P
--- INNER JOIN price ON P.Proid=price.Proid
+ 
+
 
 DELIMITER //
 CREATE PROCEDURE sp_get_user_products(IN userid int(11))
@@ -31,12 +28,6 @@ FROM view_current_price
 WHERE Regid=userid;
 END //
 DELIMITER ;
-
-
-CREATE VIEW view_current_price
-AS
-SELECT b.Regid AS Userid,b.BusinessName,CAC,b.Address,b.Contact,State,City,b.Website, p.Proid,p.Regid,Name,Symbol,Status,Cost, CONVERT(p.DateAdded,Date)AS Created ,CONVERT(c.Date,Date)AS Date,CONVERT(c.Date,Time)AS Time
-FROM products p INNER JOIN currentprice c ON p.Proid=c.Proid INNER JOIN business b ON p.Regid=b.Regid
 
 
 DELIMITER //
@@ -61,3 +52,10 @@ CREATE PROCEDURE sp_register_business(IN name varchar(60), IN CAC varchar(30), I
    INSERT INTO users(Regid,Password,Email) VALUES((SELECT max(Regid) FROM business),password,email);
    END //
    DELIMITER ;
+
+   
+CREATE VIEW view_current_price
+AS
+SELECT b.Regid AS Userid,b.BusinessName,CAC,b.Address,b.Contact,State,City,b.Website, p.Proid,p.Regid,Name,Symbol,Status,Cost, CONVERT(p.DateAdded,Date)AS Created ,CONVERT(c.Date,Date)AS Date,CONVERT(c.Date,Time)AS Time
+FROM products p INNER JOIN currentprice c ON p.Proid=c.Proid INNER JOIN business b ON p.Regid=b.Regid
+

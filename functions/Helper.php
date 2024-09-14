@@ -198,18 +198,18 @@ if(isset($_POST["product_update"])){
 //update product price
 
 if(isset($_POST["update_price"])){
-   $name=$db->conn->real_escape_string( $_POST["p_product"]);  
+   $proId=$db->conn->real_escape_string( $_POST["p_product"]);  
    $status=$db->conn->real_escape_string( $_POST["status"]);    
    $price=$db->conn->real_escape_string( $_POST["price"]); 
    $userid=$db->conn->real_escape_string( $_POST["userid"]);
 
    $product = new Product();
-   if($product->product_exist($name,$userid,$db->conn)){
+   if($product->product_exist($proId,$userid,$db->conn)){
       echo json_encode(array("Error"=>"Product does not exist"));
    }  
    else{
       //store product
-      $product->update_price($name,$status,$price,$userid,$db->conn); 
+      $product->update_price($proId,$status,$price,$userid,$db->conn); 
       if($product->Error_log==null){ 
       unset( $_POST["product"]); 
          echo json_encode(array("Success"=>"success"));
@@ -224,7 +224,8 @@ if(isset($_POST["update_status"])){
    $name=$db->conn->real_escape_string( $_POST["product"]);  
    $status=$db->conn->real_escape_string( $_POST["updatestatus"]);  
    $userid=$db->conn->real_escape_string( $_POST["userid"]);
-
+   print_r($name);
+   print_r($status);
    $product = new Product();
    
       //store product

@@ -123,7 +123,7 @@ public function delete_product($product,$usertype,$conn){
 } 
  
 //update product price
-public function update_price($productId,$status,$price,$usertype,$conn){  
+public function update_price($productId,$status,$price,$usertype,$conn){   
     $query="CALL sp_update_price('$productId', '$price','$status','$usertype') "; 
 
      if (mysqli_query($conn, $query)) { 
