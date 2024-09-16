@@ -63,6 +63,8 @@ DELIMITER ;
 CREATE VIEW view_current_price
 AS
 SELECT b.Regid AS Userid,b.BusinessName,CAC,b.Address,b.Contact,State,City,b.Website, p.Proid,p.Regid,Name,Symbol,Status,Cost, CONVERT(p.DateAdded,Date)AS Created ,CONVERT(c.Date,Date)AS Date,CONVERT(c.Date,Time)AS Time
-FROM products p INNER JOIN currentprice c ON p.Proid=c.Proid INNER JOIN business b ON p.Regid=b.Regid
+FROM products p INNER JOIN currentprice c ON p.Proid=c.Proid INNER JOIN business b ON p.Regid=b.Regid;
 
 
+CREATE VIEW `view_price_history` 
+AS select `b`.`Regid` AS `Userid`,`b`.`BusinessName` AS `BusinessName`,`b`.`CAC` AS `CAC`,`b`.`Address` AS `Address`,`b`.`Contact` AS `Contact`,`b`.`State` AS `State`,`b`.`City` AS `City`,`b`.`Website` AS `Website`,`p`.`Proid` AS `Proid`,`p`.`Regid` AS `Regid`,`p`.`Name` AS `Name`,`p`.`Symbol` AS `Symbol`,`p`.`Status` AS `Status`,`c`.`Cost` AS `Cost`,cast(`p`.`DateAdded` as date) AS `Created`,cast(`c`.`Date` as date) AS `Date`,cast(`c`.`Date` as time) AS `Time` from ((`products` `p` join `price` `c` on(`p`.`Proid` = `c`.`Proid`)) join `business` `b` on(`p`.`Regid` = `b`.`Regid`));
