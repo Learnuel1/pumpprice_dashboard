@@ -28,12 +28,12 @@
                           <li class="btn-list"id="">
                               <a class="btn-list-item" href="./pumpprice.php" target="_blank">Market</a>
                           </li>
-                          <li class="btn-list"id="">
+                          <!-- <li class="btn-list"id="">
                               <a class="btn-list-item" href="./#">Profile</a>
                           </li>
                           <li class="btn-list"id="">
                               <a class="btn-list-item" href="./#">Account</a>
-                          </li>
+                          </li> -->
                       </ul>
                 </div>
         </div>  
