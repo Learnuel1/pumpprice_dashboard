@@ -68,29 +68,62 @@ if(!isset($_SESSION["UserType"])){
         <div class="content-infor new-infor"> 
             <div class="new-container">
         <div class="news1">
-             <h2>UK To Rely On Oil And Gas Despite Net-Zero Pledge</h2>
-          <img src="../images/news/pic3.jpg" height="400px" width="650px" alt="">
-             <p>Domestic oil and gas production will continue to play an important role in the UK’s energy mix, despite the commitment to net-zero emissions by 2050, Prime Minister Boris Johnson
-
-            The American Petroleum Institute (API) estimated the inventory draw this week for crude oil to be 2.025 million barrels after analysts predicted a build of 675,000 barrels.
-
-            U.S. crude inventories shed some 78 million barrels since the start of 2021, and about 21 million barrels since the start of 2020.</p>
+             <h2>The Nigerian National Petroleum Company Limited (NNPCL) has authorized major marketers to lift petrol from Dangote Refinery, but independent marketers remain excluded. The new arrangement raises concerns over pricing and access, prompting calls for more transparency and an open market for all petroleum players in Nigeria.</h2>
+          <img src="../images/news/pic1.png" height="400px" width="650px" alt="">
+             <p >The Nigerian National Petroleum Company Limited (NNPCL) has given the green light for major petroleum marketers to begin lifting petrol from the Dangote Petroleum Refinery, under the existing distribution agreement. According to the initial terms, NNPCL is the exclusive distributor of the refinery's petrol. The first batch of petrol, totaling 16.8 million liters, has already been lifted by NNPCL's retail arm. Reports indicate that several major marketers, including 11 Plc, have commenced distribution of the product to various outlets, primarily in Lagos</p>
+             <p>
+             However, independent marketers have been excluded from this new arrangement. Alhaji Abubakar Garima, the National President of the Independent Petroleum Marketers Association of Nigeria (IPMAN), confirmed that only NNPCL currently has access to the Dangote fuel, preventing independent marketers from participating. They are awaiting a new pricing structure from NNPCL before proceeding with purchases.
+</p>
+<p>
+Meanwhile, independent marketers expressed concerns about being forced to resort to fuel imports to sustain their businesses. They are advocating for a more open sector that allows all players to participate, including calls for the Federal Government to hand over the Port Harcourt Refinery to independent marketers.
+</p>
+<p>
+The situation remains tense, with many filling stations in Abuja and Lagos still waiting for petrol supplies. IPMAN representatives indicate that if current conditions persist, they may be compelled to import their petrol to continue operations. Dr. Muda Yusuf, CEO of the Centre for the Promotion of Private Enterprise, emphasized the need for transparency regarding the pricing and operational frameworks of this new arrangement
+</p>
                 </div>
         
           
         <div class="news1">
-             <h2>U.S. Considers Chevron Request To Take, Trade Venezuelan Oil</h2>
-          <img src="../images/news/pic1.jpg" height="400px" width="650px" alt="">
-             <p>The U.S. Administration is currently reviewing a request from Chevron to potentially allow the U.S. oil giant to take and trade crude from Venezuela as a form of payment for the millions of dollars the South American producer owes Chevron for its joint ventures there, Reuters reported on Monday, quoting sources with knowledge of the talks.
-            Chevron is the last remaining U.S. oil producer with staff and offices in Venezuela and has a joint venture with the local state-controlled oil firm PDVSA.
+             <h2>
+             New Pump Price; NNPC To Sell Dangote Petrol N950 In Lagos, N992 In Abuja, N1,019 In Borno</h2>
+          <img src="../images/news/pic2.png" height="400px" width="650px" alt="">
+             <p>The Nigerian National Petroleum Company has released a breakdown of estimated prices of Premium Motor Spirit (Petrol) from Dangote Refinery in retail stations across the country based on September 2024 pricing.
 
-            The U.S. major is now lobbying with the Biden Administration to be allowed sanctions relief and be able to take and trade Venezuelan crude as a means to recover the dividends and payments it is owed by the joint venture with PDVSA, according to Reuters’ sources.
+             The Spokesperson of NNPCL, Olufemi Soneye disclosed this in a statement on Monday.
+
+The company confirmed that it is paying Dangote Refinery in United States Dollars for the September 2024 PMS offtake.
             </p>
+            <p>
+            The state-owned company stressed that the Dangote Refinery Petrol gantry was bought at N898.78 per liter.
+
+Consequently, the estimated cost price of petrol in Lagos, plus logistics, will stand at N950.22 per litre.
+
+In other locations like Federal Capital Territory (Abuja), Sokoto, and Kano states, petrol will be sold at estimated prices of N999.22 per litre.
+</p>
+<p>
+Rivers, Bayelsa, Akwa Ibom, Imo, and other states stood at N980, while Oyo State stood at N960.22.
+
+Lastly, the highest pump price will be in Borno State which stood at N1,019.22 per liter
+</p>
+<p>
+“The NNPC Ltd also wishes to state that, in line with the provisions of the Petroleum Industry Act (PIA), PMS prices are not set by the Government, but negotiated directly between parties at an arm’s length.
+
+“The NNPC Ltd can confirm that it is paying Dangote Refinery in USD for September 2024 PMS offtake, as Naira transactions will only commence on October 1st, 2024.
+
+“The NNPC Ltd assures that if the quoted pricing is disputed, it will be grateful for any discount from the Dangote Refinery, which will be passed on 100 percent to the general public.
+
+“Attached to this statement are the estimated pump prices of PMS (obtained from the Dangote Refinery) across NNPC Retail Stations in the country, based on September 2024 pricing”, he stated.
+</p>
+<p>
+Earlier Dangote Group Spokesperson, Anthony Chiejina faulted NNPCL’s statement that it bought Dangote Refinery petrol at N898 per liter upon the start of petrol supply by the Refinery.
+
+This comes as NNPCL lifted petrol from Dangote Refinery on Sunday.
+</p>
                 </div>
                 
                  <div class="news1">
-             <h2>Tanker Rates Turn Negative As U.S. LNG Flocks To Europe</h2>
-          <img src="../images/news/pic4.jpg" height="400px" width="650px" alt="">
+             <h2>NUPRC Unveils 2024 Oil Sector Growth Plan, Set to Conclude Deep Offshore Licensing Bid Round</h2>
+          <img src="../images/news/pic3.png" height="400px" width="650px" alt="">
              <p>The spot charter rates for shipping U.S. liquefied natural gas to Europe have just turned negative, suggesting that there are now too many LNG vessels in the Atlantic region but fewer requirements, according to LNG freight price assessor Spark Commodities.
                      </p>
                      <p>
@@ -99,12 +132,21 @@ if(!isset($_SESSION["UserType"])){
                 </div>
                 
                  <div class="news1">
-             <h2>U.S. Gasoline Prices Set To Ease</h2>
-          <img src="../images/news/pic2.jpg" height="400px" width="650px" alt="">
-             <p>After hitting a peak of $3.45 per gallon last week, the national average U.S. gasoline prices are expected to calm down significantly this week due to price cycling, Patrick De Haan, head of petroleum analysis for fuel-savings app GasBuddy, said on Monday.
+             <h2>Gastech 2024: Kyari To Reveal NNPCL’s Strategies For Driving Nigeria’s GDP Growth</h2>
+          <img src="../images/news/pic4.png" height="400px" width="650px" alt="">
+             <p>The Group Chief Executive Officer of the Nigerian National Petroleum Company Ltd (NNPCL), Mele Kyari, is set to share his vision for driving Nigeria’s GDP with massive investment in the oil and gas sector.
                      </p>
                      <p>
-            The national average saw over the past week one of its largest weekly jumps in the last year or so, De Haan tweeted on Monday, but added that average gasoline prices should calm down significantly this week. According to GasBuddy, prices are actually down by $0.03 per gallon from the $3.45/gal peak due to price cycling, which now leads to some states stations lowering prices.
+                     The organisers of Gastech 2024 disclosed this in a post shared on its website and seen by THE WHISTLER.
+                     The GCEO will speak on, ‘Delivering a Growth Mandate Through Domestic and International Natural Gas Sector Transformation.’
+            </p>
+                     <p>
+                     The event is scheduled to last from September 17-20, 2024 in Houston, Texas, USA.
+            </p>
+                     <p>
+                     Gastech said, “Mele Kolo Kyari, Group CEO of @nnpclimited will be speaking at the Gastech Strategic Conference. He will deliver an Energy Talk exploring ‘Delivering a growth mandate through domestic and international natural gas sector transformation’.<br>
+
+“In this Energy Talk, moderated by Hala Gorani, Anchor & Correspondent, Mele Kolo Kyari will discuss his vision and strategy for driving GDP growth in Nigeria, both through expanded domestic gas supply and the development of major export projects.
             </p>
                 </div>
         </div>
@@ -112,12 +154,14 @@ if(!isset($_SESSION["UserType"])){
         
         <div class="watch-panel">
          <div class="news1">
-             <h2>UK To Rely On Oil And Gas Despite Net-Zero Pledge</h2>
-          <img src="../images/news/pic5.jpg" height="200px" width="300px" alt="">
-             <p>Domestic oil and gas production will continue to play an important role in the UK’s energy mix, despite the commitment to net-zero emissions by 2050, Prime Minister Boris Johnson </p>
+             <h2>NUPRC Unveils 2024 Oil Sector Growth Plan, Set to Conclude Deep Offshore Licensing Bid Round</h2>
+          <img src="../images/news/pic3.png" height="200px" width="300px" alt="">
+             <p>*To drive down average oil output cost in all terrains to below $20/barrel 
+
+*Targets oil production growth of between 1.8m bpd to 2.6m bpd<br>  <strong>Emmanuel Addeh in Abuja </strong></p>
                      <p>
-             The American Petroleum Institute (API) estimated the inventory draw this week for crude oil to be 2.025 million barrels after analysts predicted a build of 675,000 barrels.
-            </p>
+                     The Nigerian Upstream Petroleum Regulatory Commission (NUPRC) has released its 2024 and near-term oil and gas sector regulatory action plan, targeting key deliverables, including the conclusion of the deep offshore oil blocks licensing bid round this year.
+</p>
                 </div>
         </div>
     </div>
