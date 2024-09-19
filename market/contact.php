@@ -12,7 +12,7 @@
     <section class="landing-page">
               <div class="header"> 
                 <div class="img-wrapper">   
-                  <img src="../images/phone_desk.jpg">
+                  <img src="../images/back1.jpg">
                 </div>
              </div> 
             <div class="box-1">
